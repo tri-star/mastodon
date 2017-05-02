@@ -80,6 +80,7 @@ Rails.application.configure do
 end
 
 require 'sidekiq/testing'
+require 'byebug'
 Sidekiq::Testing.inline!
 
 ActiveRecordQueryTrace.enabled = ENV.fetch('QUERY_TRACE_ENABLED') { false }

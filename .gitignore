@@ -23,6 +23,7 @@ public/assets
 .env.production
 node_modules/
 neo4j/
+.byebug_history
 
 # Ignore Vagrant files
 .vagrant/
