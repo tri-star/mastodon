@@ -7,6 +7,8 @@ import Compose from '../compose';
 import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
 import Notifications from '../notifications';
+import CommunityTimeline from '../community_timeline';
+import PublicTimeline from '../public_timeline';
 import { connect } from 'react-redux';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'react-decoration';
@@ -14,6 +16,11 @@ import { uploadCompose } from '../../actions/compose';
 import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
+
+const mapStateToProps = state => ({
+  column_settings: state.getIn(['column_settings'])
+});
+
 
 class UI extends React.PureComponent {
 
@@ -121,7 +128,8 @@ class UI extends React.PureComponent {
 
   render () {
     const { width, draggingOver } = this.state;
-    const { children } = this.props;
+    const { children, column_settings } = this.props;
+    var columns = column_settings.toJS().columns;
 
     let mountedColumns;
 
@@ -132,11 +140,29 @@ class UI extends React.PureComponent {
         </ColumnsArea>
       );
     } else {
+
+      var customColumns = [];
+      for(var i in columns) {
+        switch(columns[i].column_type) {
+          case 'home':
+            customColumns.push(<HomeTimeline key={i} custom={true} shouldUpdateScroll={() => false}/>);
+            break;
+          case 'local':
+            customColumns.push(<CommunityTimeline key={i} custom={true} shouldUpdateScroll={() => false}/>);
+            break;
+          case 'federated':
+            customColumns.push(<PublicTimeline key={i} custom={true} shouldUpdateScroll={() => false}/>);
+            break;
+          case 'notifications':
+            customColumns.push(<Notifications key={i} custom={true} shouldUpdateScroll={() => false}/>);
+            break;
+        }
+      }
+
       mountedColumns = (
         <ColumnsArea>
           <Compose withHeader={true} />
-          <HomeTimeline shouldUpdateScroll={() => false} />
-          <Notifications shouldUpdateScroll={() => false} />
+          {customColumns}
           <div style={{display: 'flex', flex: '1 1 auto', position: 'relative'}}>{children}</div>
         </ColumnsArea>
       );
@@ -163,4 +189,4 @@ UI.propTypes = {
   children: PropTypes.node
 };
 
-export default connect()(UI);
+export default connect(mapStateToProps)(UI);
