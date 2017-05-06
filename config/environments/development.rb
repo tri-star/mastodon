@@ -79,8 +79,6 @@ Rails.application.configure do
   config.react.variant = :development
 end
 
-require 'sidekiq/testing'
 require 'byebug'
-Sidekiq::Testing.inline!
 
 ActiveRecordQueryTrace.enabled = ENV.fetch('QUERY_TRACE_ENABLED') { false }
