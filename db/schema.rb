@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425202925) do
+ActiveRecord::Schema.define(version: 20170506074046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 20170425202925) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true, using: :btree
+  end
+
+  create_table "column_settings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.string   "column_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["user_id"], name: "index_user_id_on_column_settings", using: :btree
   end
 
   create_table "domain_blocks", force: :cascade do |t|
