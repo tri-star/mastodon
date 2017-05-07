@@ -12,7 +12,8 @@ class User < ApplicationRecord
   belongs_to :account, inverse_of: :user, required: true
   accepts_nested_attributes_for :account
 
-  has_many :column_setting, inverse_of: :user, dependent: :destroy
+  has_many :column_settings, inverse_of: :user, dependent: :destroy
+  accepts_nested_attributes_for :column_settings
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
   validates :email, email: true

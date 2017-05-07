@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     end
 
     resource :follower_domains, only: [:show, :update]
+    resource :column_setting, only: [:show, :update]
   end
 
   resources :media, only: [:show]

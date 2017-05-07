@@ -5,7 +5,7 @@ class ColumnSetting < ApplicationRecord
   default_scope { order('order_id asc') }
 
   def self.get_available_columns()
-    [:home, :federated, :notifications, :getting_started]
+    [:home, :federated, :local, :notifications, :getting_started]
   end
 
 end
