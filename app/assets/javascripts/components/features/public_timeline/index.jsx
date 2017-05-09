@@ -72,11 +72,16 @@ class PublicTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread } = this.props;
+    const { intl, hasUnread, custom } = this.props;
+
+    var backButton = (<ColumnBackButtonSlim />);
+    if(custom) {
+      backButton = '';
+    }
 
     return (
       <Column icon='globe' active={hasUnread} heading={intl.formatMessage(messages.title)}>
-        <ColumnBackButtonSlim />
+        {backButton}
         <StatusListContainer {...this.props} type='public' scrollKey='public_timeline' emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other instances to fill it up' />} />
       </Column>
     );
