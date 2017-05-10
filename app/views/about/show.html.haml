@@ -20,10 +20,17 @@
     = image_tag 'logo.png'
     = Setting.site_title
 
-  %p= t('about.about_mastodon').html_safe
+  %p A Mastodon instance to talk about computers and cats.
+  %p &nbsp;
 
   .screenshot-with-signup
-    .mascot= image_tag 'fluffy-elephant-friend.png'
+    .mascot
+      = image_tag 'cat01.png'
+      %p
+        = 'photo credit:'
+        = link_to 'sjmck', 'http://www.flickr.com/photos/50683718@N00/90402237'
+        = 'via'
+        = link_to '(license)', 'https://creativecommons.org/licenses/by-nc/2.0/'
 
     - if @instance_presenter.open_registrations
       = render 'registration'
@@ -40,37 +47,6 @@
           ·
           = link_to t('about.about_this'), about_more_path
 
-  %h3= t('about.features_headline')
-
-  .features-list
-    .features-list__column
-      %ul.fa-ul
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.chronology'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.public'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.characters'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.gifv'
-    .features-list__column
-      %ul.fa-ul
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.privacy'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.blocks'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.ethics'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.api'
 
   - unless @instance_presenter.site_description.blank?
     %h3= t('about.description_headline', domain: site_hostname)
