@@ -46,6 +46,11 @@ ja:
         reblog: トゥートがブーストされた時にメールで通知する
       column_settings:
         column_no: '%{no}列目'
+        type:
+          home: ホーム
+          local: ローカル
+          federated: 連合
+          notifications: 通知
     'no': いいえ
     required:
       mark: "*"

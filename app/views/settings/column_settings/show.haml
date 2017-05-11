@@ -4,7 +4,10 @@
 = simple_form_for current_user, url: settings_column_setting_path, html: { method: :put } do |f|
   = f.simple_fields_for :column_settings do |column|
     .fields-group
-      = column.input :column_type, label: t('simple_form.labels.column_settings.column_no', {no: column.index+1}), collection: ColumnSetting.get_available_columns, wrapper: :with_label, include_blank: true, required: false
+      = column.input :column_type, label: t('simple_form.labels.column_settings.column_no',
+          {no: column.index+1}), collection: ColumnSetting.get_available_columns,
+          wrapper: :with_label, include_blank: true, required: false,
+          label_method: lambda {|c| t("simple_form.labels.column_settings.type.#{c}")}
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
