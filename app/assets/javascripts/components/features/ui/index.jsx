@@ -145,16 +145,16 @@ class UI extends React.PureComponent {
       for(var i in columns) {
         switch(columns[i].column_type) {
           case 'home':
-            customColumns.push(<HomeTimeline custom={true} shouldUpdateScroll={() => false}/>);
+            customColumns.push(<HomeTimeline key={i} custom={true} shouldUpdateScroll={() => false}/>);
             break;
           case 'local':
-            customColumns.push(<CommunityTimeline custom={true} shouldUpdateScroll={() => false}/>);
+            customColumns.push(<CommunityTimeline key={i} custom={true} shouldUpdateScroll={() => false}/>);
             break;
           case 'federated':
-            customColumns.push(<PublicTimeline custom={true} shouldUpdateScroll={() => false}/>);
+            customColumns.push(<PublicTimeline key={i} custom={true} shouldUpdateScroll={() => false}/>);
             break;
           case 'notifications':
-            customColumns.push(<Notifications custom={true} shouldUpdateScroll={() => false}/>);
+            customColumns.push(<Notifications key={i} custom={true} shouldUpdateScroll={() => false}/>);
             break;
         }
       }
