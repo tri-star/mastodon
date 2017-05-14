@@ -41,4 +41,16 @@ class User < ApplicationRecord
   def setting_auto_play_gif
     settings.auto_play_gif
   end
+
+  def initialize_user
+    initial_settings = [
+      :home, :notifications, '', ''
+    ]
+    initial_settings.each_with_index do |c, i|
+      column_setting = ColumnSetting.new()
+      column_setting.order_id = i + 1
+      column_setting.column_type = c
+      self.column_settings.append column_setting
+    end
+  end
 end
