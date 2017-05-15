@@ -44,6 +44,13 @@ ja:
         follow_request: フォローリクエストを受けた時にメールで通知する
         mention: 返信が来た時にメールで通知する
         reblog: トゥートがブーストされた時にメールで通知する
+      column_settings:
+        column_no: '%{no}列目'
+        type:
+          home: ホーム
+          local: ローカル
+          federated: 連合
+          notifications: 通知
     'no': いいえ
     required:
       mark: "*"

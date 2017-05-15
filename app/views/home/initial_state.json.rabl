@@ -28,3 +28,7 @@ node(:accounts) do
 end
 
 node(:settings) { @web_settings }
+
+node(:column_settings) do
+  { columns: current_account.user.column_settings }
+end

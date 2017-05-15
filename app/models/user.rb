@@ -12,6 +12,9 @@ class User < ApplicationRecord
   belongs_to :account, inverse_of: :user, required: true
   accepts_nested_attributes_for :account
 
+  has_many :column_settings, inverse_of: :user, dependent: :destroy
+  accepts_nested_attributes_for :column_settings
+
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
   validates :email, email: true
 
@@ -37,5 +40,17 @@ class User < ApplicationRecord
 
   def setting_auto_play_gif
     settings.auto_play_gif
+  end
+
+  def initialize_user
+    initial_settings = [
+      :home, :notifications, '', ''
+    ]
+    initial_settings.each_with_index do |c, i|
+      column_setting = ColumnSetting.new()
+      column_setting.order_id = i + 1
+      column_setting.column_type = c
+      self.column_settings.append column_setting
+    end
   end
 end

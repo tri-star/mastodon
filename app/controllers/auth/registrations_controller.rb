@@ -6,6 +6,14 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :check_enabled_registrations, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
 
+  def create()
+    ActiveRecord::Base.transaction do
+      super do |user|
+        user.initialize_user
+      end
+    end
+  end
+
   protected
 
   def build_resource(hash = nil)

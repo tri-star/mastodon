@@ -44,6 +44,13 @@ en:
         follow_request: Send e-mail when someone requests to follow you
         mention: Send e-mail when someone mentions you
         reblog: Send e-mail when someone boosts your status
+      column_settings:
+        column_no: 'No %{no}'
+        type:
+          home: Home
+          local: Local timeline
+          federated: Community timeline
+          notifications: Notifications
     'no': 'No'
     required:
       mark: "*"
