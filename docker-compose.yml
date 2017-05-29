@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
 
   db:
@@ -14,9 +14,9 @@ services:
      - /var/data/docker-data/mastodon-redis:/data
 
   web:
-    restart: always
     build: .
     image: gargron/mastodon
+    restart: always
     env_file: .env.production
     command: sh /mastodon/boot.sh
     ports:
@@ -26,9 +26,9 @@ services:
       - redis
 
   streaming:
-    restart: always
     build: .
     image: gargron/mastodon
+    restart: always
     env_file: .env.production
     command: npm run start
     ports:
@@ -38,9 +38,9 @@ services:
       - redis
 
   sidekiq:
-    restart: always
     build: .
     image: gargron/mastodon
+    restart: always
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
     depends_on:
