@@ -7,8 +7,14 @@
 echo "Creating mastodon user (UID : ${UID} and GID : ${GID})..."
 addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon
 
-echo "Updating permissions..."
-find /mastodon -path /mastodon/public/system -prune -o -not -user mastodon -not -group mastodon -print0 | xargs -0 chown -f mastodon:mastodon
+# set -x
+# echo "Updating permissions..."
+# find /mastodon/log -print0 | xargs -0 chown -f mastodon:mastodon
+# find /mastodon/public -name emoji -prune -o  -print0 | xargs -0 chown -f mastodon:mastodon
+# chown mastodon:mastodon /mastodon/node_modules
+# chown -R mastodon:mastodon /mastodon/node_modules/uws
+# chown -R mastodon:mastodon /mastodon/node_modules/.bin
+# find /mastodon/tmp -print0 | xargs -0 chown -f mastodon:mastodon
 
 echo "Executing process..."
-exec su-exec mastodon:mastodon /sbin/tini -- "$@"
+/sbin/tini -- "$@"

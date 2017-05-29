@@ -45,8 +45,8 @@ RUN bundle install --deployment --without test development \
 
 COPY . /mastodon
 
-COPY docker_entrypoint.sh /usr/local/bin/run
+# COPY docker_entrypoint.sh /usr/local/bin/run
 
-RUN chmod +x /usr/local/bin/run
+# RUN chmod +x /usr/local/bin/run
 
-ENTRYPOINT ["/usr/local/bin/run"]
+# ENTRYPOINT ["/usr/local/bin/run"]

@@ -91,7 +91,6 @@ group :development do
   gem 'bundler-audit', '~> 0.5', require: false
   gem 'scss_lint', '~> 0.53', require: false
 
-  gem 'byebug'
   gem 'capistrano', '~> 3.8'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-rbenv', '~> 2.1'
