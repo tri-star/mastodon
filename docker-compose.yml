@@ -15,7 +15,7 @@ services:
 
   web:
     build: .
-    image: gargron/mastodon
+    image: us.gcr.io/centi-gitlab/centidon
     restart: always
     env_file: .env.production
     command: /mastodon/web_boot.sh
@@ -27,7 +27,7 @@ services:
 
   streaming:
     build: .
-    image: gargron/mastodon
+    image: us.gcr.io/centi-gitlab/centidon
     restart: always
     env_file: .env.production
     command: npm run start
@@ -39,7 +39,7 @@ services:
 
   sidekiq:
     build: .
-    image: gargron/mastodon
+    image: us.gcr.io/centi-gitlab/centidon
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
