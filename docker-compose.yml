@@ -2,13 +2,11 @@ version: '3'
 services:
 
   db:
-    restart: always
     image: postgres:alpine
     volumes:
     - /var/data/docker-data/mastodon-postgres:/var/lib/postgresql/data
 
   redis:
-    restart: always
     image: redis:alpine
     volumes:
     - /var/data/docker-data/mastodon-redis:/data
@@ -16,7 +14,6 @@ services:
   web:
     build: .
     image: us.gcr.io/centi-gitlab/centidon
-    restart: always
     env_file: .env.production
     command: /mastodon/web_boot.sh
     ports:
@@ -28,7 +25,6 @@ services:
   streaming:
     build: .
     image: us.gcr.io/centi-gitlab/centidon
-    restart: always
     env_file: .env.production
     command: npm run start
     ports:
@@ -40,7 +36,6 @@ services:
   sidekiq:
     build: .
     image: us.gcr.io/centi-gitlab/centidon
-    restart: always
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
     depends_on:
