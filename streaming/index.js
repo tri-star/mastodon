@@ -474,8 +474,16 @@ const startWorker = (workerId) => {
     log.error(err);
   };
 
+  const onDump = () => {
+    log.info("---------------- Current connections:-------------------");
+    subs.foreach( (s, index) => {
+      log.info(index + "\n");
+    });
+  };
+
   process.on('SIGINT', onExit);
   process.on('SIGTERM', onExit);
+  process.on('SIGUSR1', onDump);
   process.on('exit', onExit);
   process.on('error', onError);
 };
