@@ -2,7 +2,7 @@ version: '3'
 services:
 
   db:
-    image: postgres:alpine
+    image: postgres:9.6-alpine
     ports:
       - "5432:5432"
     volumes:
@@ -16,7 +16,7 @@ services:
   web:
     image: us.gcr.io/centi-gitlab/centidon:latest
     env_file: .env.production
-    command: /mastodon/web_boot_dev.sh web
+    command: /mastodon/boot_dev.sh web
     volumes:
     - ".:/mastodon"
     ports:
@@ -28,7 +28,7 @@ services:
   streaming:
     image: us.gcr.io/centi-gitlab/centidon:latest
     env_file: .env.production
-    command: /mastodon/web_boot_dev.sh streaming
+    command: /mastodon/boot_dev.sh streaming
     volumes:
     - ".:/mastodon"
     ports:
@@ -40,7 +40,7 @@ services:
   sidekiq:
     image: us.gcr.io/centi-gitlab/centidon:latest
     env_file: .env.production
-    command: /mastodon/web_boot_dev.sh sidekiq
+    command: /mastodon/boot_dev.sh sidekiq
     
     volumes:
     - ".:/mastodon"
