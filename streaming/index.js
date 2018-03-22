@@ -309,12 +309,8 @@ const startWorker = (workerId) => {
     const accountId = req.accountId || req.remoteAddress;
 
     const streamType = notificationOnly ? ' (notification)' : '';
-<<<<<<< HEAD
     const d = new Date();
     log.verbose(req.requestId, `${d} : Starting stream from ${id} for ${req.accountId}${streamType}`);
-=======
-    log.verbose(req.requestId, `Starting stream from ${id} for ${accountId}${streamType}`);
->>>>>>> v2.1.2
 
     const listener = message => {
       const { event, payload, queued_at } = JSON.parse(message);
@@ -396,12 +392,8 @@ const startWorker = (workerId) => {
     const heartbeat = setInterval(() => res.write(':thump\n'), 15000);
 
     req.on('close', () => {
-<<<<<<< HEAD
       const d = new Date();
       log.verbose(req.requestId, `${d} : Ending stream for ${req.accountId}`);
-=======
-      log.verbose(req.requestId, `Ending stream for ${accountId}`);
->>>>>>> v2.1.2
       clearInterval(heartbeat);
     });
 
