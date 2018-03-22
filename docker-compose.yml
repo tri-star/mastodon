@@ -28,7 +28,7 @@ services:
 
   web:
     build: .
-    image: us.gcr.io/centi-gitlab/centidon
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/centidon
     env_file: .env.production
     command: /mastodon/web_boot.sh
     networks:
@@ -42,7 +42,7 @@ services:
 
   streaming:
     build: .
-    image: us.gcr.io/centi-gitlab/centidon
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/centidon
     env_file: .env.production
     command: yarn start
     networks:
@@ -62,7 +62,7 @@ services:
 
   sidekiq:
     build: .
-    image: us.gcr.io/centi-gitlab/centidon
+    image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/centidon
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
     depends_on:
