@@ -1,7 +1,12 @@
 #!/bin/sh
 
-ln -sf /volumes/mastodon-assets/assets /mastodon/public/assets
-ln -sf /volumes/mastodon-assets/packs /mastodon/public/packs
 
+LINK=/mastodon/public/assets
+test -d $LINK && test ! -L $LINK && rm -rf $LINK
+ln -sf /volumes/mastodon-assets/assets $LINK
+
+LINK=/mastodon/public/packs
+test -d $LINK && test ! -L $LINK && rm -rf $LINK
+ln -sf /volumes/mastodon-assets/packs $LINK
 
 $@
