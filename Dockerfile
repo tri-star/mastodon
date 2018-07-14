@@ -77,5 +77,7 @@ RUN addgroup -g ${GID} mastodon && adduser -h /mastodon -s /bin/sh -D -G mastodo
  && mkdir -p /mastodon/public/system /mastodon/public/assets /mastodon/public/packs \
  && chown -R mastodon:mastodon /mastodon/public
 
+ENV MALLOC_ARENA_MAX=2
+
 COPY . /mastodon
 RUN chmod +x /mastodon/boot.sh
